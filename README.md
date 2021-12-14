@@ -1,6 +1,8 @@
 # kaspersky-docker
 
-Dockerized Kaspersky scan engine for testing purposes
+Dockerized Kaspersky scan engine for testing purposes.
+
+This should not be used for production instances, only for testing integrations.
 
 ## Setup
 
