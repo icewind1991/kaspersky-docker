@@ -18,5 +18,9 @@ LD_LIBRARY_PATH="/opt/kaspersky/ScanEngine/lib:/opt/kaspersky/ScanEngine/ppl:${L
 
 export KL_PLUGINS_PATH
 export LD_LIBRARY_PATH
+
+touch /var/log/httpd_kav_7.log
+tail -f /var/log/httpd_kav_7.log &
+
 cd "${DAEMON_DIR}"
 exec "${DAEMON}" -c "${CONFILE}" -n -p "${PIDFILE}" ${ADDITIONAL_ARGS}

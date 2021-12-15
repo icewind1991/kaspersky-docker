@@ -6,7 +6,10 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y expect c
     cd Kaspersky_ScanEngine-Linux-x86_64-*-Release/ && \
     /setup.expect
 
-HEALTHCHECK --interval=5s CMD curl --fail http://localhost/licenseinfo || exit 1
+ADD kave.ini /opt/kaspersky/ScanEngine/ppl/
+ADD httpdkavlog.ini /opt/kaspersky/ScanEngine/bin/
+
+HEALTHCHECK --interval=15s CMD curl --fail http://localhost/licenseinfo || exit 1
 
 ENTRYPOINT "/entrypoint.sh"
 
