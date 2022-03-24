@@ -1,0 +1,42 @@
+#!/usr/bin/expect -f
+set timeout -1
+spawn ./install
+
+expect "to read the EULA"
+send -- "\r"
+
+expect "to quit"
+send -- "q"
+
+expect "Do you accept the End User License Agreement?"
+send -- "Yes\r"
+
+expect "Do you want to use Kaspersky Scan Engine GUI?"
+send -- "No\r"
+
+expect "integration mode"
+send -- "2\r"
+
+expect "port"
+send -- "1344\r"
+
+expect "Do you want to use KSN"
+send -- "No\r"
+
+expect "Do you want to use a proxy server"
+send -- "No\r"
+
+expect "temporary directory"
+send -- "/tmp\r"
+
+expect "licensing mode"
+send -- "1\r"
+
+expect "directory that contains the key file"
+send -- "/\r"
+
+expect "Are these settings correct?"
+send -- "Yes\r"
+
+expect "to quit"
+send \x03

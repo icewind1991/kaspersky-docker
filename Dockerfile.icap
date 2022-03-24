@@ -1,0 +1,15 @@
+FROM ubuntu:20.04
+
+ADD icap.expect *.key Kaspersky_ScanEngine-Linux-x86_64-*-Release.tar.gz entrypoint-icap.sh /
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y expect curl vim && \
+    cd Kaspersky_ScanEngine-Linux-x86_64-*-Release/ && \
+    /icap.expect && \
+    sed -i 's|<Allow204>0</Allow204>|<Allow204>1</Allow204><VirusNameICAPHeader>X-Virus-ID</VirusNameICAPHeader>|' /opt/kaspersky/ScanEngine/etc/kavicapd.xml
+
+ADD kave.ini /opt/kaspersky/ScanEngine/ppl/
+ADD icapdkavlog.conf /opt/kaspersky/ScanEngine/bin/
+
+ENTRYPOINT "/entrypoint-icap.sh"
+
+
